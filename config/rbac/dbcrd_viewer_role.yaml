@@ -1,0 +1,20 @@
+# permissions for end users to view dbcrds.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: dbcrd-viewer-role
+rules:
+- apiGroups:
+  - apps.unicom.cn
+  resources:
+  - dbcrds
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - apps.unicom.cn
+  resources:
+  - dbcrds/status
+  verbs:
+  - get

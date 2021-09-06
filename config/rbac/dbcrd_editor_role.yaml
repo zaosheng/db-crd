@@ -1,0 +1,24 @@
+# permissions for end users to edit dbcrds.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: dbcrd-editor-role
+rules:
+- apiGroups:
+  - apps.unicom.cn
+  resources:
+  - dbcrds
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - apps.unicom.cn
+  resources:
+  - dbcrds/status
+  verbs:
+  - get

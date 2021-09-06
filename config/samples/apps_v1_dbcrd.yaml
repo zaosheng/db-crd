@@ -1,0 +1,7 @@
+apiVersion: apps.unicom.cn/v1
+kind: DBcrd
+metadata:
+  name: dbcrd-sample
+spec:
+  # Add fields here
+  foo: bar

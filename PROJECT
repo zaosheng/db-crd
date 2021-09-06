@@ -1,0 +1,7 @@
+domain: unicom.cn
+repo: db-crd
+resources:
+- group: apps
+  kind: DBcrd
+  version: v1
+version: "2"
