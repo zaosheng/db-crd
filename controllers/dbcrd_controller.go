@@ -18,7 +18,7 @@ package controllers
 
 import (
 	"context"
-	appsv1 "db-crd/api/v1"
+	mygroupv1 "db-crd/api/v1"
 	"fmt"
 	"reflect"
 
@@ -35,7 +35,7 @@ import (
 )
 
 // create a new deploy object
-func NewDeploy(owner *appsv1.DBcrd, logger logr.Logger, scheme *runtime.Scheme) *appsv1.Deployment {
+func NewDeploy(owner *mygroupv1.DBcrd, logger logr.Logger, scheme *runtime.Scheme) *appsv1.Deployment {
 	labels := map[string]string{"app": owner.Name}
 	selector := &metav1.LabelSelector{MatchLabels: labels}
 
@@ -80,7 +80,7 @@ func NewDeploy(owner *appsv1.DBcrd, logger logr.Logger, scheme *runtime.Scheme) 
 }
 
 // create a new service object
-func NewService(owner *appsv1.DBcrd, logger logr.Logger, scheme *runtime.Scheme) *corev1.Service {
+func NewService(owner *mygroupv1.DBcrd, logger logr.Logger, scheme *runtime.Scheme) *corev1.Service {
 	srv := &corev1.Service{
 		TypeMeta: metav1.TypeMeta{
 			Kind:       "Service",
@@ -123,7 +123,7 @@ func (r *DBcrdReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
 	// your logic here
 	/*1. create/update deploy
 	  ========================*/
-	mycrd_instance := &appsv1.DBcrd{}
+	mycrd_instance := &mygroupv1.DBcrd{}
 	if err := r.Get(ctx, req.NamespacedName, mycrd_instance); err != nil {
 		lgr.Error(err, "***Get crd instance failed(maybe be deleted)! please check!***")
 		return reconcile.Result{}, err
@@ -186,6 +186,6 @@ func (r *DBcrdReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
 
 func (r *DBcrdReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
-		For(&appsv1.DBcrd{}).
+		For(&mygroupv1.DBcrd{}).
 		Complete(r)
 }
