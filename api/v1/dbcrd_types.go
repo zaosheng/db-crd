@@ -28,12 +28,14 @@ import (
 type DBcrdSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
-	Replicas  *int32                      `json:"replicas"`
-	Image     string                      `json:"image"`
-	Port      int32                       `json:"port"`
-	Nodeport  int32                       `json:"nodeport"`
-	Envs      []corev1.EnvVar             `json:"envs,omitempty"`
-	Resources corev1.ResourceRequirements `json:"resources,omitempty"`
+	Replicas     *int32                      `json:"replicas"`
+	Image        string                      `json:"image"`
+	Port         int32                       `json:"port"`
+	Nodeport     int32                       `json:"nodeport"`
+	Envs         []corev1.EnvVar             `json:"envs,omitempty"`
+	Resources    corev1.ResourceRequirements `json:"resources,omitempty"`
+	VolumeMounts []corev1.VolumeMount        `json:"volumeMounts"`
+	Volumes      []corev1.Volume             `json:"volumes"`
 }
 
 // DBcrdStatus defines the observed state of DBcrd

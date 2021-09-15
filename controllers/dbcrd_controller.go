@@ -55,6 +55,7 @@ func NewDeploy(owner *mygroupv1.DBcrd, logger logr.Logger, scheme *runtime.Schem
 					Labels: labels,
 				},
 				Spec: corev1.PodSpec{
+					Volumes: owner.Spec.Volumes,
 					Containers: []corev1.Container{
 						{
 							Name:            owner.Name,
@@ -63,6 +64,7 @@ func NewDeploy(owner *mygroupv1.DBcrd, logger logr.Logger, scheme *runtime.Schem
 							ImagePullPolicy: corev1.PullIfNotPresent,
 							Env:             owner.Spec.Envs,
 							Resources:       owner.Spec.Resources,
+							VolumeMounts:    owner.Spec.VolumeMounts,
 						},
 					},
 				},
